@@ -7,7 +7,6 @@ export default (
     <Router>
         <Switch>
             <Route path="/" exact component={Index}/>
-            <Route path="/index" exact component={Index}/>
         </Switch>
     </Router>
 )

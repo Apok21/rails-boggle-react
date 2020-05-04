@@ -76,6 +76,73 @@ class Index extends React.Component {
         })
     }
 
+    submitWord(e) {
+        if (e.key === 'Enter') {
+            let submitted_word = e.target.value.trim()
+            this.setState(prevState => ({
+                attempted_words: [...prevState.attempted_words, submitted_word],
+            }))
+            if (this.state.attempted_words.includes(submitted_word) || submitted_word.length === 1) {
+                e.target.value = ''
+                return false;
+            }
+
+            const url = "/api/v1/boggle_game/submit_word";
+            const body = {
+                word: submitted_word,
+                board_letters: this.state.board_letters
+            };
+            console.log(body);
+            const token = document.querySelector('meta[name="csrf-token"]').content;
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "X-CSRF-Token": token,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(body)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error("Network response was not ok.");
+                })
+                .then(response => {
+                    console.log(response);
+                    if (response.result.length > 0) {
+                        let msg = '';
+                        let msg_type = '';
+                        if (response.result.length === 2) {
+                            msg = 'Nice'
+                            msg_type = 'green'
+                        } else if (response.result.length === 3) {
+                            msg = 'Cool'
+                            msg_type = 'green'
+                        } else {
+                            msg = 'Awesome'
+                            msg_type = 'green'
+                        }
+                        this.setState(prevState => ({
+                            correct_words: [...prevState.correct_words, response.result],
+                            messageToUser: msg,
+                            messageType: msg_type,
+                        }))
+
+                        // total score is sum of letters in all the words in the array
+                        this.setState({ total_score: this.state.correct_words.join('').length })
+                        // alert(response.data.test_res)
+                    } else {
+                        this.setState({ messageToUser: 'Wrong !', messageType: 'red' })
+                    }
+                })
+                .catch(response => {
+                    console.log(response)
+                })
+            e.target.value = ''
+        }
+    }
+
     render() {
         const body = (
             this.state.game_is_on ?
@@ -84,7 +151,7 @@ class Index extends React.Component {
                     restartGame={this.restartGame.bind(this)}
                     stopGame={this.stopGame.bind(this)}
                     backToInstructions={this.backToInstructions.bind(this)}
-                    // submitWord={this.submitWord.bind(this)}
+                    submitWord={this.submitWord.bind(this)}
                     inputDisabled={this.state.inputDisabled}
                     correctWords={this.state.correct_words}
                     totalScore={this.state.total_score}
@@ -99,7 +166,7 @@ class Index extends React.Component {
                 <Banner />
                 {body}
                 <div>
-            </div>
+                </div>
             </div>
         )
 
