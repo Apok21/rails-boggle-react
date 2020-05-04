@@ -1,4 +1,4 @@
-module GameHelper
+module BoggleGameHelper
   def generate_board_letters
     vowels = %w[a e i o u]
     consonants = %w[b c d f g h j k l m n p q r s t v w x y z]

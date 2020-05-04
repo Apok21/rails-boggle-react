@@ -78,7 +78,7 @@ class Index extends React.Component {
 
     submitWord(e) {
         if (e.key === 'Enter') {
-            let submitted_word = e.target.value.trim()
+            let submitted_word = e.target.value.trim().toLowerCase();
             this.setState(prevState => ({
                 attempted_words: [...prevState.attempted_words, submitted_word],
             }))
