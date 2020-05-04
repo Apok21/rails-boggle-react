@@ -1,0 +1,2 @@
+class BoggleGame < ApplicationRecord
+end
