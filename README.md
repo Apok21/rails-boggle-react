@@ -1,24 +1,78 @@
-# README
+# Rails-Boggle-React
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Simple Boggle word game with Ruby on Rails and React JS.
 
-Things you may want to cover:
+**Note**: This application was created on Windows 10 OS.
 
-* Ruby version
 
-* System dependencies
+## Built with
 
-* Configuration
+- Ruby 2.6.6p146
 
-* Database creation
+- Rails 5.1.7
 
-* Database initialization
+- Node : v14.1.0 
 
-* How to run the test suite
+- Yarn : 1.22.4
 
-* Services (job queues, cache servers, search engines, etc.)
+- React JS: 16.13.1
 
-* Deployment instructions
+## Quick Start
 
-* ...
+Open up a gitbash/powersshell and navigate to a location where you would like to download this project.
+Then, enter the given commands sequentially
+
+Clone the project to you local directory using `HTTPS`
+
+```
+https://github.com/Apok21/rails-boggle-react.git
+```
+
+Navigate inside the downloaded project
+
+```
+cd rails-boggle-react
+```
+Install all back-end dependencies
+
+```
+bundle install
+```
+
+Install all front-end dependencies
+
+```
+yarn install
+```
+
+Run rails server
+
+```
+rails s
+```
+
+By default,  the server tries to run on port 3000.
+So if you want to run it on a different port:
+
+```
+rails s -p <port>
+```
+
+Open up your browser and access the app via url `http://localhost:<port>`
+
+## Testing the Rails APIs
+
+To run controller unit tests:
+
+```
+rake test
+```
+
+**Note**
+
+This project uses https://developer.oxforddictionaries.com  api to validate if a word is valid.
+
+## Credits and References
+
+- [ROR-React-boggle](https://github.com/Rabin-Lama/ROR-React-boggle)
+- [Chuks Opia](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-ruby-on-rails-project-with-a-react-frontend)
