@@ -8,6 +8,23 @@ class Api::V1::BoggleGameController < ApplicationController
     
   end
 
+  def submit_word
+    word_in_board = helpers.check_word_in_board
+    if word_in_board
+      result = helpers.check_word
+
+      render json: {
+        submitted_word: params[:word],
+        result: result
+      }
+    else
+      render json: {
+        submitted_word: params[:word],
+        result: ''
+      }
+    end
+  end
+
   # def show
   # end
 

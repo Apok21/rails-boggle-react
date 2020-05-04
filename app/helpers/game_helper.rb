@@ -40,8 +40,8 @@ module GameHelper
   def check_word
     word = params[:word]
 
-    app_id = 'b0d3c2de'
-    app_key = '4f15f3a8d5425fc7ca492e9cc4e5edb8'
+    app_id = 'bc16f7be'
+    app_key = 'd0bd90083341b226cda0f4db3400306a'
     lang = 'en-gb'
     word_id = word
     fields = 'definitions'

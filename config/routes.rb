@@ -11,11 +11,11 @@ Rails.application.routes.draw do
     end
   end
 
-  # namespace :api do
-  #   namespace :v1 do
-  #     get 'boggle_game/show'
-  #   end
-  # end
+  namespace :api do
+    namespace :v1 do
+      post 'boggle_game/submit_word'
+    end
+  end
 
   # namespace :api do
   #   namespace :v1 do
